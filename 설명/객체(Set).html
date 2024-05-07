@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>객체(Set)</title>
+  </head>
+  <body>
+    <script>
+      /* 키 없이 여러개의 값을 모아둔 객체 (배열과 비슷)
+        중복 불가
+      */
+      const arr = [1, 2, 3, 4, 4];
+      const newSet = new Set(arr); //set 객체 생성
+      console.log(newSet);
+
+      // has():데이터타입까지 체크
+      console.log(newSet.has(1)); // true
+      console.log(newSet.has("1")); // false
+    </script>
+  </body>
+</html>

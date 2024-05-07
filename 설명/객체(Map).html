@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>객체(Map)</title>
+  </head>
+  <body>
+    <script>
+      /* Map : 키와 값으로 구성되어있는 하나의 쌍 
+            키에 모든 자료형 사용 가능(객체, 함수도 사용가능)
+            키는 순서대로 접근하고 처리 가능
+        */
+
+      const bag = new Map([
+        ["color", "red"],
+        ["size", "big"],
+      ]); // Map 객체 생성
+      console.log(bag);
+
+      //get(키):키의 값 반환 메소드
+      console.log(bag.get("color")); // undefined
+
+      //has(키):키가 맵에 있는지 체크해서 boolean 타입 반환
+      console.log(bag.has("size"));
+      console.log(bag.has("size1111"));
+
+      //keys(), values(), entries() : 키반환/값반환/[키,값]형태로 반환
+      console.log(bag.keys());
+      for (key of bag.keys()) {
+        console.log(key);
+        if (key == "color") {
+          alert(`가방색은 ${bag.get(key)}이다`);
+        }
+      }
+
+      for (val of bag.values()) {
+        console.log(val);
+      }
+    </script>
+  </body>
+</html>

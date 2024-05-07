@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>타이머함수</title>
+  </head>
+  <body>
+    <script>
+      /* setTimeout : 특정시간이후에 실행
+           setInterval&clearInterval :  특정시간동안 반복 실행 */
+
+      //setInterval(콜백함수, 시간)
+      function greeting() {
+        console.log("안녕");
+      }
+      //   setInterval(greeting, 2000); // 1000ms = 1s
+      //   setInterval(() => {
+      //     console.log("안녕");
+      //   }, 2000);
+
+      let count = 0;
+      const timer = setInterval(function () {
+        console.log("안녕");
+        count++;
+        if (count == 2) {
+          clearInterval(timer);
+        }
+      }, 2000);
+
+      //setTimeout(콜백함수, 시간)
+      setTimeout(() => alert("집에갈래"), 2000);
+    </script>
+  </body>
+</html>
