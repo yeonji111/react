@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /* 문제1. 사용자에게 입력받은 반지름을 통해 원의 넓이, 둘레 구하기
+               1) circleInfo 함수 생성
+               2) circleInfo 인수로 radius 넘기기
+               - radius(반지름)를 활용해서 원의 넓이, 둘레 구하기
+               3) circleInfo 리턴값: {area: 넓이값, circum: 둘레값}
+               단, 넓이, 둘레 모두 소수점 3자리까지만 출력
+
+               Math.PI 사용하기
+               결과: {area: 78.540, circum: 31.416}
+            */
+      const radius = 5;
+      const circleInfo = (r) => {
+        const area = r * r * Math.PI;
+        const circum = 2 * r * Math.PI;
+
+        return { area: area, circum: circum };
+      };
+      console.log(circleInfo(radius));
+
+      /* 문제2. 주어진 문자열 배열에서 무작위로 하나의 단어를 선택하는 함수
+               1) getRandomWord 함수 생성
+               2) getRandomWord 인수로 wordList 넘기기
+               3) 무작위로 랜덤한 하나의 단어 출력하기(힌트. 랜덤메서드 통해 랜덤한 인덱스 출력)
+               4) getRandomWord 리턴값:  무작위로 출력된 단어
+            */
+      let wordList = ["apple", "banana", "orange", "grape", "kiwi"]; //0 ~ 4
+      //문자열, 숫자 랜덤하게 조합해서 쿠폰번호, 랜덤한코드값 출력
+      const getRandomWord = (arr) => {
+        //0 이상 1 미만
+        const index = Math.floor(Math.random() * wordList.length);
+        return arr[index];
+      };
+      console.log(getRandomWord(wordList));
+
+      /* 문제3. 무작위로 생성된 10개의 숫자로 이루어진 배열에서 짝수, 홀수 갯수 세는 함수 작성하기
+               1. randomList 함수 생성
+               1-1. randomList 함수 통해 랜덤한 수로 10개로 구성된 배열 리턴
+               2. countEvenOdd 함수 생성
+               2-1. randomList 함수의 리턴값을 인수로 받기
+               2-2. 인수로 받은 배열에서 짝수의 갯수와 홀수의 갯수 리턴
+               2-3. countEvenOdd 리턴값: { list: 배열, even: 짝수갯수, odd: 홀수갯수 }
+            */
+      //10개의 랜덤한 숫자를 담고있는  배열
+      const randomList = () => {
+        const randomNumArr = [];
+        for (let i = 0; i < 10; i++) {
+          randomNumArr.push(Math.floor(Math.random() * 100 + 1));
+        }
+
+        return randomNumArr;
+      };
+
+      //홀수, 짝수 카운팅 하는 함수
+      const countEvenOdd = () => {
+        const arr = randomList();
+        let evenCnt = 0;
+        let oddCnt = 0;
+
+        for (num of arr) {
+          if (num % 2 == 0) {
+            evenCnt++;
+          } else {
+            oddCnt++;
+          }
+        }
+
+        return { list: arr, even: evenCnt, odd: oddCnt };
+      };
+      console.log(countEvenOdd());
+    </script>
+  </body>
+</html>

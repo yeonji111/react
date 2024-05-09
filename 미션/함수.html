@@ -9,47 +9,23 @@
     <script>
       /* 문제1. 가장 많이 등장하는 문자 반환하는 함수 생성하기
 
-         1) maxRepeatChar 함수 생성
-         2) maxRepeatChar 호출 시 검증할 문자열을 인수로 보내기
-         2) maxRepeatChar 리턴값으로 {maxChar: 많이나온글자, maxCount: 최대횟수}
-      */
+              1) maxRepeatChar 함수 생성
+              2) maxRepeatChar 호출 시 검증할 문자열을 인수로 보내기
+              2) maxRepeatChar 리턴값으로 {maxChar: 많이나온글자, maxCount: 최대횟수}
+           */
       const text = "Let's study JavaScript!";
 
-      /* 내 버전
-
-      maxChar = "";
-      maxCount = 0;
-      function maxRepeatChar(text) {
-        for (let i = 0; i < text.length; i++) {
-          for (let j = 0; j < i; j++) {
-            if (text[i] == text[j]) {
-              maxChar = text[j];
-              maxCount += 1;
-            }
-          }
-        }
-        return `maxChar : ${maxChar}, maxCount : ${maxCount}`;
-      }
-      console.log("1번 ", maxRepeatChar(text));
-
-      */
-
-      /* 선생님 버전 1 */
       const maxRepeatChar = (param) => {
-        const charObject = {}; // L:1, e:1, t:3
-        let maxChar = ""; // 가장 많이 나온 글자
-        let maxCount = 0;
-        const obj = { name: "zzz" };
-        // console.log(obj.name); // zzz
-        // console.log(obj[name]); // zzz
-        // console.log(obj["ddd"]); // undifined -> false 값
+        const charObject = {}; //L:1, e:1, t:3
+        let maxChar = ""; //가장많이나온글자
+        let maxCount = 0; //가장많이나온글자의 횟수
 
         for (item of param) {
           if (charObject[item]) {
-            // 키의 값이 존재
+            //키의 값이 존재
             charObject[item]++;
           } else {
-            // 키의 값이 미존재
+            //키의 값이 미존재
             charObject[item] = 1;
           }
 
@@ -59,26 +35,30 @@
             maxChar = item;
           }
         }
+
         return { maxChar: maxChar, maxCount: maxCount };
       };
-      console.log("1번 ", maxRepeatChar(text));
+      maxRepeatChar(text);
+
       /* 문제2. 주어진 배열을 뒤집는 함수
 
-         1) reverseArray 함수 생성
-         2) reverseArray 함수 호출 시 배열 인수로 보내기
-         3) reverseArray 리턴값으로 뒤집어진 배열 반환
-       */
+              1) reverseArray 함수 생성
+              2) reverseArray 함수 호출 시 배열 인수로 보내기
+              3) reverseArray 리턴값으로 뒤집어진 배열 반환
+            */
       const arr = [1, 2, 3, 4, 5];
-      // function reverseArray(arr) {
-      //   let result = [];
-      //   for (let i = arr.length - 1; i >= 0; i--) {
-      //     result.push(arr[i]);
+      //기본for문
+      // const reverseArray = (param) => {
+      //   const arr = [];
+      //   for (let i = param.length - 1; i >= 0; i--) {
+      //     arr.push(param[i]);
       //   }
-      //   return result;
-      // }
-      // console.log("2번 ", reverseArray(arr));
 
-      // 내장객체메서드
+      //   return arr;
+      // };
+      // reverseArray(arr);
+
+      //내장객체메서드
       const reverseArray = (param) => {
         param.reverse();
         return param;
@@ -87,69 +67,64 @@
 
       /* 문제3. 객체 속성 추가하는 함수
 
-         1) addObjectProperty 함수 생성
-         2) addObjectProperty 인수로 userInfo(객체), "kindergarten"(키), "떡잎유치원"(값) 넘기기
-         3) addObjectProperty 리턴값으로 해당 2)의 key, value 추가된 object 반환
-      */
+              1) addObjectProperty 함수 생성
+              2) addObjectProperty 인수로 userInfo(객체), "kindergarten"(키), "떡잎유치원"(값) 넘기기
+              3) addObjectProperty 리턴값으로 해당 2)의 key, value 추가된 object 반환
+           */
       const userInfo = {
         name: "신짱구",
         age: 5,
       };
 
-      // function addObjectProperty(...param) {
-      //   const arr = { kindergarten: "떡잎유치원" };
-      //   return { ...param, ...arr };
-      // }
-      // console.log("3번 ", addObjectProperty(userInfo));
-
       const addObjectProperty = (obj, key, value) => {
+        obj[key] = value;
         obj.key = value;
 
         return obj;
       };
-      console.log(addObjectProperty(userInfo, "kindergarten", "떡잎유치원"));
+      addObjectProperty(userInfo, "kindergarten", "떡잎유치원");
 
       /* 문제4. 주어진 배열에서 최솟값과 최댓값의 차이를 반환하는 함수
 
-         1) diffNumber 함수 생성
-         2) diffNumber 인수로 배열 넘기기
-         3) diffNumber 리턴값으로 최솟값, 최댓값의 차이 값 반환
-      */
+              1) diffNumber 함수 생성
+              2) diffNumber 인수로 배열 넘기기
+              3) diffNumber 리턴값으로 최솟값, 최댓값의 차이 값 반환
+           */
       const arr3 = [1, 2, 3, 4, 5];
       function diffNumber(param) {
-        let minNum = param[0];
-        let maxNum = param[0];
+        let max = param[0];
+        let min = param[0];
 
         for (item of param) {
-          if (item > maxNum) {
-            maxNum = item;
+          if (item > max) {
+            max = item;
           }
-          if (item < minNum) {
-            minNum = item;
+          if (item < min) {
+            min = item;
           }
         }
-        return maxNum - minNum;
+        return max - min;
       }
-      console.log("4번 ", diffNumber(arr3));
+      diffNumber(arr3);
 
       /* 문제5. 주어진 배열의 모든 수를 더하기
 
-         1) totalSum 함수 생성
-         2) totalSum 인수로 합산하고 싶은 모든 배열 넘기기
-         3) totalSum 리턴값으로 합산된 값 반환
-      */
+              1) totalSum 함수 생성
+              2) totalSum 인수로 합산하고 싶은 모든 배열 넘기기
+              3) totalSum 리턴값으로 합산된 값 반환
+           */
       const numArr1 = [1, 2, 3];
       const numArr2 = [4, 5, 6];
 
-      function totalSum(...param) {
+      function totalSum(arr) {
         let sum = 0;
-
-        for (item of param) {
+        for (item of arr) {
           sum += item;
         }
+
         return sum;
       }
-      console.log("5번 ", totalSum(...numArr1, ...numArr2));
+      totalSum([...numArr1, ...numArr2]);
     </script>
   </body>
 </html>

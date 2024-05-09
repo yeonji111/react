@@ -19,25 +19,12 @@
       const fruitStr1 = "사과";
       const fruitStr2 = "오렌지";
 
-      // function deduplication(arr1, arr2, str1, str2) {
-      //   const fruits = [...arr1, ...arr2, str1, str2];
-      //   const resultSet = new Set(fruits);
-      //   return resultSet;
-      // }
-      // console.log(
-      //   deduplication(fruitArray1, fruitArray2, fruitStr1, fruitStr2)
-      // );
-
-      /* 선생님버전 */
       const deduplication = (...param) => {
-        console.log(param);
-        // Set([])
         const fruits = new Set(param);
         console.log(fruits);
 
         return fruits;
       };
-
       deduplication(...fruitArray1, ...fruitArray2, fruitStr1, fruitStr2);
 
       /* 문제2. Map을 사용한 단어 빈도수 계산
@@ -51,37 +38,21 @@
             **결과: {'I'=>1, 'a'=>2, 'm'=>1, 'h'=>1, 'p'=>2, 'y'=>1}
       */
       const sentence = "I am happy";
-
-      // function countWords(param) {
-      //   const resultMap = new Map();
-      //   const cnt = 1;
-      //   for (let i = 0; i < param.length; i++) {
-      //     resultMap.set(param[i], cnt);
-      //     if (resultMap.has(param[i])) {
-      //       // param[i]의 값만 +1 해주기
-      //       // resultMap.get(param[i]) = resultMap.get(param[i]) + 1
-      //     }
-      //   }
-      //   return resultMap;
-      // }
-
-      /* 선생님 버전 */
       const countWords = (param) => {
+        // console.log(str);
         const sentenceMap = new Map();
 
         for (item of param) {
           if (item == " ") {
             continue;
           }
-          const count = sentenceMap.get(item) || 0; // 글자의 횟수
+          const count = sentenceMap.get(item) || 0; //글자의 횟수
           sentenceMap.set(item, count + 1);
         }
-
-        return sentenceMap;
       };
-      console.log(countWords(sentence));
+      countWords(sentence);
 
-      /* 문제. 키와 값 반전
+      /* 문제. 키와 값 반전 
          1) invertMap 함수 생성
          2) invertMap 인수로 originMap 넘기기
          3) 넘겨받은 파라미터의 키, 값이 반전된 새로운 map객체 리턴
@@ -93,32 +64,17 @@
         ["b", 2],
         ["c", 3],
       ]);
-
-      // function invertMap(param) {
-      //   const resultMap = new Map();
-      //   const paramMap = new Map(param);
-
-      //   for (key of paramMap.keys()) {
-      //     console.log(key);
-      //     resultMap.values = resultMap.set(paramMap.get(key)); // abc
-      //     resultMap.keys = resultMap.set(key); // 123
-      //   }
-
-      //   return resultMap;
-      // }
-
-      /* 선생님 버전 */
       const invertMap = (param) => {
         const result = new Map();
         for (key of param.keys()) {
           result.set(param.get(key), key);
         }
+        console.log(result);
         return result;
       };
+      invertMap(originMap);
 
-      console.log(invertMap(originMap));
-
-      /* 문제4. 성적별 학생들 그룹묶기
+      /* 문제4. 성적별 학생들 그룹묶기 
          1) groupByGrade 함수 생성
          2) groupByGrade 인수로 students 넘기기
          3) 성적별 학생 명단 map 객체로 리턴
@@ -135,34 +91,9 @@
         { id: 5, name: "Eve", grade: "B" },
       ];
 
-      /* 선생님 버전 */
       const groupByGrade = (param) => {
         const result = new Map();
         for (item of param) {
-          // console.log(item);
-          // switch (item.grade) {
-          //   case "A":
-          //     if (!result.grade) {
-          //       result.set("A", []);
-          //     }
-          //     result.set("A", result.get("A").push(item.name));
-          //     break;
-
-          //   case "B":
-          //     if (!result.grade) {
-          //       result.set("B", []);
-          //     }
-          //     result.set("B", result.get("B").push(item.name));
-          //     break;
-
-          //   case "C":
-          //     if (!result.grade) {
-          //       result.set("C", []);
-          //     }
-          //     result.set("C", result.get("C").push(item.name));
-          //     break;
-          // }
-
           if (!result.has(item.grade)) {
             result.set(item.grade, []);
           }

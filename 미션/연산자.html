@@ -14,6 +14,10 @@
          문자열이 아니라면 콘솔에 "문자열이 아닙니다" 출력
       */
       const str = "Javascript 재밌다";
+      console.log(typeof str);
+      const result =
+        typeof str == "string" ? `문자열길이${str.length}` : "문자열아님";
+      console.log(result);
 
       /* 문제2.
          주어진 세 숫자 중에서 가장 큰 수를 찾기
@@ -24,12 +28,19 @@
       const numB = 20;
       const numC = 15;
 
+      //가장 큰 수 출력
+      const numResult =
+        numA > numB && numA > numC ? numA : numB > numC ? numB : numC;
+      console.log(`가장 큰 수는 ${numResult}`);
+
       /* 문제3.
          해당 값들과 논리연산자만을 활용해서
          콘솔에 "초깃값은 10입니다" 출력
       */
       const value1 = null;
       const value2 = 10;
+
+      console.log(`초깃값은 ${value1 || value2}`);
     </script>
   </body>
 </html>
