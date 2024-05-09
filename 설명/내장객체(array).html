@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>내장객체(array)</title>
+  </head>
+  <body>
+    <script>
+      /* 프로퍼티, 메서드 - 반환값 */
+      const arr = [10, 20, 30, 40];
+      console.log(arr);
+
+      //찾기관련, 변형관련 메서드
+      arr.forEach((ele) => {
+        // console.log(ele);
+      });
+      //find(): 함수를 통해 판별되어 일치한 첫번째 값 반환
+      const result = arr.find(function (ele) {
+        return ele > 20;
+      });
+      console.log(result);
+      //findIndex(): 인덱스 숫자를 반환
+      const resultIndex = arr.findIndex((ele) => {
+        return ele > 20;
+      });
+      console.log(resultIndex);
+
+      //filter(): 함수를 통해 판별되어 일치한 값들을 배열
+      const result2 = arr.filter((ele) => {
+        return ele > 20;
+      });
+      console.log(result2);
+
+      //return을 써야하는 때 쓰지 않아도 되는때 (중괄호여부)
+      const result3 = arr.filter((ele) => ele > 20);
+      console.log("=>", result3);
+
+      //map(): 각 요소를 돌면서 함수를 적용(실행) => 배열로 반환
+      const result4 = arr.map((ele) => ele * 2);
+      console.log(result4);
+
+      //reduce(): 값을 하나로 누적
+      //acc: 누적값 curr: 현재값 / 함수,?(초깃값)
+      const result5 = arr.reduce((acc, curr, index) => {
+        return acc + curr;
+      }, 0);
+      console.log(result5);
+
+      //push(): 길이 반환
+      const result6 = arr.push(60);
+      console.log(arr);
+    </script>
+  </body>
+</html>

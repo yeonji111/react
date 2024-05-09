@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>json</title>
+  </head>
+  <body>
+    <script>
+      /* 전송,응답 string 타입으로 주고 받아야함 
+            키와 값을 파일 포맷 = json
+            ** 언어,플랫폼 상관없이 사용가능
+        */
+      const arr = ["사과", "바나나"];
+      const obj = {
+        name: "짱구",
+        age: 5,
+        symbol: Symbol("id"),
+        greeting: () => {
+          console.log("하이");
+        },
+      };
+      //object to json
+      const jsonArr = JSON.stringify(arr);
+      console.log(jsonArr);
+      const jsonObj = JSON.stringify(obj);
+      console.log(jsonObj);
+      //symbol, function 사라짐 -> js에서 자체로 들어있는 데이터
+
+      console.log(JSON.parse(jsonArr));
+      console.log(JSON.parse(jsonObj));
+    </script>
+  </body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>변수와상수</title>
+  </head>
+  <body>
+    <script>
+      /* 변수,상수: 데이터 저장공간 */
+      //var: 재선언, 재할당 가능 / 호이스팅 가능
+      //let: 재할당 가능
+      //const: 재선언, 재할당 다 불가능
+
+      /* 자료형(데이터타입) */
+      //문자열(sting): String객체, "", '', ``(백틱)
+      const num = 1000;
+      console.log("사과는 " + num + "원 입니다.");
+      console.log(`사과는 ${num}원 입니다.`);
+
+      //숫자형(number) >> 소수점계산 명확하지 않음 >> Math객체
+      const sum = 0.1 + 0.2;
+      console.log(sum);
+      console.log(typeof sum);
+
+      //논리형(boolean): true, false
+      const isTrue = true;
+      const isTrue2 = 10 < 20;
+      console.log(isTrue2);
+      console.log(!isTrue);
+
+      /* null, undefined, ""(빈문자열), NaN, 0 => falsy한 값 */
+      //null, undefined
+
+      //undefined: 변수 선언 후 데이터 할당하지 않을 경우 할당되는 임시데이터(변수의 초깃값)
+      let empty;
+      console.log(empty);
+
+      //null: 변수 선언 후 의도적으로 선언한 공간 비워두기
+      let nullEmpty = null;
+      console.log(nullEmpty);
+
+      /* 참조형 데이터 타입: 배열, 객체리터럴, 함수 */
+      const arr = [1, 2, 3];
+      arr.push(4);
+      console.log(arr[0]);
+
+      const obj = { name: "신짱구", age: 5 };
+      obj.name = "철수";
+      obj["name"] = "철수";
+
+      const userObj = {
+        name: "짱구",
+        age: 5,
+        list: ["철수", "유리", "맹구"],
+        location: { name: "떡잎마을" },
+      };
+      console.log(userObj.list[1]);
+      console.log(userObj.location.name);
+
+      //Symbol: 한번 만들면 변경 불가 / 같은 값을 가진 심벌 만들기 불가
+      let symbol1 = Symbol();
+      let symbol2 = Symbol();
+      console.log(symbol1 == symbol2);
+
+      let id = Symbol("id");
+      const member = {
+        name: "shin",
+        //심벌을 가진 아이를 키로 지정할땐 대괄호
+        [id]: 12345,
+      };
+      console.log(member);
+      member.id = 6789;
+    </script>
+  </body>
+</html>

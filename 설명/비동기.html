@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>비동기</title>
+  </head>
+  <body>
+    <script>
+      /* 프로미스객체 : 정의,실행 */
+      const confirm = true;
+      const promise = new Promise((resolve, reject) => {
+        if (confirm) {
+          setTimeout(() => resolve("성공"), 2000);
+        } else {
+          setTimeout(() => reject("실패"), 2000);
+        }
+      });
+      // status : pending(대기) fullfied(성공/완료)
+      console.log(promise);
+
+      promise
+        .then((res) => console.log(res))
+        .catch((err) => console.log(err))
+        .finally(() => console.log("종료!"));
+
+      /* async, await */
+      //async : 함수앞에 붙이게되면 함수를 비동기로 전환
+      // 블록문 = promise 변환
+
+      // await : async 함수 내에서만 사용가능
+      async function fetchUser() {
+        const result = await "/";
+        if (result) {
+          alert("사용자화면");
+        } else {
+          alert("문제발생");
+        }
+
+        const result2 = await "/";
+        if (result2) {
+          alert("사용자화면");
+        } else {
+          alert("문제발생");
+        }
+      }
+      fetchUser().then(console.log);
+    </script>
+  </body>
+</html>

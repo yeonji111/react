@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>통신</title>
+    <!-- axios cdn 링크 추가 -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <script>
+      /* http통신 : ajax(fetch api,axios) 
+           AJAX : 웹 페이지내에서 동적으로 데이터를 주고 받는 기술
+           - XML, JSON
+           JSON : 통신을 할때의 데이터 타입 != js 객체리터럴
+           ** json은 언어,툴 상관없음
+
+           get방식 : 주소창 url , form 태그 action = '/' method = 'post';
+           www.naver.com/page2?name='ddd'&age=5
+        */
+
+      /* fetch api */
+      const serviceKey =
+        "WOX88LV9CJfxoI%2FQ6nDfxyNOTVxAyhC3xfcuWdBbKkzKkbPrriTVsfPSJDyI5pCaXEY%2FpT%2BRCCgY2jW99Pm1ww%3D%3D";
+      const url = `http://apis.data.go.kr/1360000/MidFcstInfoService/getMidLandFcst?serviceKey=${serviceKey}&numOfRows=10&pageNo=1&regId=11B00000&tmFc=202405081800&dataType=JSON`;
+
+      const goFetch = () => {
+        //fetch 자동으로 get 요청해줌
+        const val = fetch(url)
+          .then((res) => {
+            // true, false
+            if (!res.ok) {
+              //서버에서 통신 error
+              throw new Error("error");
+            }
+            //response.text() : 텍스트데이터반환
+            //response.json() : json 데이터를 파싱하여 js객체로 반환
+            //response.blob() : 바이너리 데이터
+            return res.json();
+          })
+          .then((data) => {
+            const result = data.response.body.items.item[0];
+            return result;
+
+            // DB INSERT UPDATE
+          })
+          .catch((err) => {
+            console.log("에러");
+          });
+        console.log(val);
+        return val;
+      };
+
+      const data = goFetch();
+      console.log(data); //promise 객체 반환
+      data.then(console.log);
+
+      const goFetch2 = async () => {
+        const res = await fetch(url);
+        if (!res.ok) {
+          throw new Error("에러");
+        }
+        const data = await res.json();
+        const weatherInfo = data.response.body.items.item[0];
+        return weatherInfo;
+      };
+      const result = goFetch2();
+      result.then(console.log);
+      //   console.log(result);
+      //   goFetch2();
+
+      /* axios : async&await 
+       통신을 도와주는 라이브러리 설치
+    */
+
+      const goAxios = () => {
+        axios
+          .get(url)
+          .then((res) => {
+            console.log(res.data);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      };
+
+      //   goAxios();
+
+      const goAxios2 = async () => {
+        const res = await axios.get(url);
+        if (res.status != 200) {
+          throw new Error("error");
+        }
+        console.log(res.data);
+      };
+      goAxios2();
+    </script>
+  </body>
+</html>

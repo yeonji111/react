@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>프로미스</title>
+  </head>
+  <body>
+    <script>
+      //공공api -> 특정한 시간에 js를 실행해서 데이터를 db에 insert
+
+      /* promise 객체: 처리에 성공시 실행할 콜백함수
+                         처리에 성공하지 않았을 때 실행할 콜백함수를
+                         미리 약속
+      */
+      //resolve: 성공시 실행
+      //reject: 실패시 실행
+
+      //Producer & Consumer
+      //promise 객체 생성
+      const promise = new Promise((resolve, reject) => {
+        setTimeout(() => {
+          //   resolve("성공");
+          reject(new Error("실패"));
+        }, 2000);
+      });
+
+      /* err와 관련된 log db - log */
+
+      //consumer: promise 가져다가 실행
+      //then(): 실행 성공
+      //catch(): 실행 실패
+      //finaly(): 무조건 마지막에 타는 부분
+      promise
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+        .finally(() => {
+          console.log("최종!");
+        });
+
+      //promise 체이닝
+      const fetchNumber = new Promise((res, rej) => {
+        setTimeout(() => res(1), 1000);
+      });
+      //then() 영역에는 값, promise 객체도 전달
+      fetchNumber
+        .then((num) => num * 2)
+        .then((num) => num * 3)
+        .then((num) => {
+          return new Promise((res, rej) => {
+            setTimeout(() => res(num), 1000);
+          });
+        })
+        .then((res) => {
+          console.log(res);
+        });
+
+      /* error 핸들링 */
+      const getHen = () => {
+        return new Promise((res, rej) => {
+          setTimeout(() => res("🐔"), 1000);
+        });
+      };
+      const getEgg = (hen) => {
+        return new Promise((res, rej) => {
+          setTimeout(() => res(`${hen} => 🥚`), 1000);
+          //   setTimeout(() => rej(`error! ${hen} => 🥚`), 1000);
+        });
+      };
+      const getCook = (egg) => {
+        return new Promise((res, rej) => {
+          setTimeout(() => res(`${egg} => 🍳`), 1000);
+        });
+      };
+
+      getHen() //promise 객체가 반환
+        .then((hen) => getEgg(hen))
+        // .catch((err) => {
+        //   return "🎃";
+        // })
+        .then((egg) => getCook(egg))
+        .then((meal) => console.log(meal));
+
+      //   getHen().then(getEgg).then(getCook).then(console.log);
+    </script>
+  </body>
+</html>
